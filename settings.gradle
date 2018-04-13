@@ -1,0 +1,5 @@
+rootProject.name = 'snap-kotlin-builder'
+
+include 'common'
+include 'kotlin'
+include 'kotlin-native'

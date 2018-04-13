@@ -1,0 +1,23 @@
+dependencies {
+    compile project(':common')
+
+    compile group: 'org.json', name: 'json', version: '20171018'
+}
+
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
+
+task buildKotlinSnap(type: JavaExec) {
+    onlyIf {
+        project.hasProperty('folder')
+    }
+
+    main = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+
+    doFirst {
+        args project.getProperty('folder')
+        systemProperties System.getProperties()
+    }
+}

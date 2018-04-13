@@ -1,0 +1,33 @@
+name: kotlin-native
+version: %VERSION%
+summary: Kotlin/Native compiler
+description: |
+  Kotlin/Native is a technology for compiling Kotlin to native binaries that run without any VM. It comprises a LLVM-based backend for the Kotlin compiler and a native implementation of the Kotlin runtime library. Kotlin/Native is primarily designed to allow compilation for platforms where virtual machines are not desirable or possible (such as iOS, embedded targets), or where a developer needs to produce a reasonably-sized self-contained program that does not require an additional runtime.
+grade: stable
+confinement: classic
+architectures: [amd64]
+
+apps:
+  kotlin-native:
+    command: wrappers/kotlinc-native.wrapper
+  cinterop:
+    command: wrappers/cinterop.wrapper
+  klib:
+    command: wrappers/klib.wrapper
+  konanc:
+    command: wrappers/konanc.wrapper
+  kotlinc-native:
+    command: wrappers/kotlinc-native.wrapper
+
+parts:
+  kotlin-native:
+    plugin: dump
+    source: %URL%
+    source-type: tar
+    build-packages: [ca-certificates-java]
+    stage-packages: [openjdk-8-jdk]
+  wrappers:
+    plugin: dump
+    source: .
+    stage:
+      - wrappers/*

@@ -1,0 +1,9 @@
+dependencies {
+    compile project(':common')
+
+    compile group: 'org.json', name: 'json', version: '20171018'
+}
+
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}

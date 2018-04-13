@@ -1,0 +1,33 @@
+name: kotlin
+version: %VERSION%
+summary: Command line Kotlin compiler
+description: |
+  Statically typed programming language for modern multiplatform applications
+grade: stable
+confinement: classic
+architectures: [amd64]
+
+apps:
+  kotlin:
+    command: wrappers/kotlin.wrapper
+  kotlin-dce-js:
+    command: wrappers/kotlin-dce-js.wrapper
+  kotlinc:
+    command: wrappers/kotlinc.wrapper
+  kotlinc-js:
+    command: wrappers/kotlinc-js.wrapper
+  kotlinc-jvm:
+    command: wrappers/kotlinc-jvm.wrapper
+
+parts:
+  kotlin:
+    plugin: dump
+    source: %URL%
+    source-subdir: kotlinc
+    build-packages: [ca-certificates-java]
+    stage-packages: [openjdk-8-jdk]
+  wrappers:
+    plugin: dump
+    source: .
+    stage:
+      - wrappers/*
