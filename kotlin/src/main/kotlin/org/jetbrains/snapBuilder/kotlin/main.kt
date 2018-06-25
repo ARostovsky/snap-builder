@@ -32,7 +32,7 @@ fun main(args: Array<String>) {
                 }
             }
 
-    if (version == getVersionInStoreByChannel(SNAP_NAME, "stable")) {
+    if (version == getVersionInStoreByChannel(SNAP_NAME)) {
         LOG.info("Build with such version $version is already in Snap Store")
         return
     } else {

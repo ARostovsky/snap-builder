@@ -15,7 +15,7 @@ fun upload(file: File) {
             "--volume=$file:/build/${file.name}",
             "--workdir=/build",
             DOCKER_IMAGE,
-            "snapcraft", "push", file.name
+            "snapcraft", "push", file.name, "--release", "stable"
     )
 
     ProcessBuilder(command).run(LOG, verbose = true)
