@@ -1,4 +1,4 @@
-rootProject.name = 'snap-kotlin-builder'
+rootProject.name = 'snap-builder'
 
 include 'common'
 include 'kotlin'

@@ -36,6 +36,6 @@ fun main(args: Array<String>) {
         LOG.info("Build with such version $version is already in Snap Store")
         return
     } else {
-        upload(snap)
+        upload(snap, "stable")
     }
 }

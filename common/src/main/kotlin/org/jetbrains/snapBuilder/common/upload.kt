@@ -8,15 +8,15 @@ val DOCKER_IMAGE = System.getProperty("dockerImage") ?: "snapcore/snapcraft:late
 private val LOG: Logger = LoggerFactory.getLogger("snap-builder-upload")
 
 
-fun upload(file: File) {
+fun upload(file: File, channel: String? = null) {
     val command = listOf(
             "docker", "run", "-t", "--rm",
             "--volume=$configFile:/root/.config/snapcraft/snapcraft.cfg",
             "--volume=$file:/build/${file.name}",
             "--workdir=/build",
             DOCKER_IMAGE,
-            "snapcraft", "push", file.name, "--release", "stable"
-    )
+            "snapcraft", "push", file.name
+    ) + if (!channel.isNullOrBlank()) listOf("--release", channel) else emptyList()
 
     ProcessBuilder(command).run(LOG, verbose = true)
             .also {
