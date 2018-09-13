@@ -40,8 +40,9 @@ val response: JSONObject by lazy {
 val version = response.getString("tag_name")!!.substring(1)
 
 val zipUrl = response.getJSONArray("assets")
-        .getJSONObject(0)
-        .getString("browser_download_url")!!
+        .filterIsInstance<JSONObject>()
+        .first { it.getString("name") == "kotlin-compiler-$version.zip" }
+        .getString("browser_download_url")
 
 val assembledYaml: File by lazy {
     val content = ClassLoader.getSystemClassLoader()
