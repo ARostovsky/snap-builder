@@ -9,7 +9,7 @@ import java.net.URL
 
 
 const val SNAP_NAME = "kotlin"
-val DOCKER_IMAGE = System.getProperty("dockerImage") ?: "snapcore/snapcraft:latest"
+val DOCKER_IMAGE = System.getProperty("dockerImage") ?: "snapcore/snapcraft:stable"
 val LOG: Logger = LoggerFactory.getLogger("snap-builder-$SNAP_NAME")
 val url = URL("https://api.github.com/repos/JetBrains/kotlin/releases/latest")
 

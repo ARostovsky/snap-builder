@@ -19,8 +19,8 @@ fun build(dir: File): File {
             "--volume=$wrappersFolder:/build/wrappers:ro",
             "--volume=${dir.absolutePath}:/build/result",
             DOCKER_IMAGE,
-            "snapcraft", "snap",
-            "-o", "result/${snap.name}")
+            "bash", "-c",
+            "apt-get update; snapcraft snap -o result/${snap.name}")
     ProcessBuilder(command).run(LOG, verbose = true)
 
     assembledYaml.delete()
